@@ -15,6 +15,7 @@ div.output {
 
 div.output table {
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 div.output table th, div.output table td {

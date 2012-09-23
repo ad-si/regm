@@ -105,6 +105,14 @@ var RegM = {
         
         while (RegM.running) {
             RegM.step();
+            
+            if (RegM.stepCount >= 1000) {
+                RegM.running = false;
+                RegM.log({
+                    type : 'error',
+                    message : 'Limit of 1000 steps reached!'
+                });
+            }
         }
     },
     step : function() {
@@ -118,8 +126,8 @@ var RegM = {
         }
         
         var line = RegM.c[0];
-        var bi = RegM.b[line - 1];
-        var parts = bi.split(' ');
+        var instruction = RegM.b[line - 1];
+        var parts = instruction.split(' ');
         var name = parts[0].toLowerCase();
         
         if (RegM.instructions[name]) {
@@ -131,9 +139,15 @@ var RegM = {
                 type : 'step',
                 step : RegM.stepCount,
                 line : line,
-                instruction : bi,
+                instruction : instruction,
                 akku : RegM.C,
                 c: RegM.c
+            });
+        } else {
+            RegM.running = false;
+            RegM.log({
+                type : 'error',
+                message : 'Invalid instruction: ' + instruction
             });
         }
     },
