@@ -8,8 +8,8 @@
         <script>
             $(document).ready(function() {
                 // add default values
-                $('#code').html('LOAD 1\nADD 2\nSTORE 3\nCLOAD 2\nMULT 3\nSTORE 3\nIF C < 20 GOTO 4\nEND');
-                $('#memory').val('1 3');
+                $('#code').html('CLOAD 0\nSTORE 2\nLOAD 2\nMULT 2\nSTORE 3\nLOAD 1\nSUB 3\nIf c0 = 0 GOTO 12\nLOAD 2\nCADD 1\nGOTO 2\nEND');
+                $('#memory').val('1 0 15');
                 
                 // run register machine
                 $('#run').on('click', function() {
@@ -24,7 +24,6 @@
                                 .append('<td>' + log.step + '</td>')
                                 .append('<td>' + log.line + '</td>')
                                 .append('<td>' + log.instruction + '</td>')
-                                .append('<td>' + log.akku + '</td>')
                                 .append('<td>' + JSON.stringify(log.c) + '</td>')
                                 .append('</tr>');
                         } else {
@@ -59,7 +58,6 @@
                         <th>Step</th>
                         <th>Line</th>
                         <th>Instruction</th>
-                        <th>Akku</th>
                         <th>Memory</th>
                     </tr>
                 </thead>
