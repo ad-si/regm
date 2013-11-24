@@ -1,72 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>RegM</title>
-        <link rel="stylesheet" href="default.css" type="text/css" charset="utf-8">
-        <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
-        <script src="regm.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            $(document).ready(function() {
-                // add default values
-                $('#code').html('CLOAD 0\nSTORE 2\nLOAD 2\nMULT 2\nSTORE 3\nLOAD 1\nSUB 3\nIf c0 = 0 GOTO 12\nLOAD 2\nCADD 1\nGOTO 2\nEND');
-                $('#memory').val('1 0 15');
-                
-                // run register machine
-                $('#run').on('click', function() {
-                    var code = $('#code').val();
-                    var memory = $('#memory').val();
-                    $('div.output').show();
-                    $('#output').html('');
-                    RegM.run(code, memory, function(log) {
-                        if (log.type == 'step') {
-                            $('#output')
-                                .append('<tr>')
-                                .append('<td>' + log.step + '</td>')
-                                .append('<td>' + log.line + '</td>')
-                                .append('<td>' + log.instruction + '</td>')
-                                .append('<td>' + JSON.stringify(log.c) + '</td>')
-                                .append('</tr>');
-                        } else {
-                            $('#output')
-                                .append('<tr>')
-                                .append('<td class="' + log.type + '" colspan="6">' + log.message + '</td>')
-                                .append('</tr>');
-                        }
-                    });
-                });
-            });
-        </script>
-    </head>
-    <body>
-        <div class="title">
-            <h1>Register Machine</h1>
+<head>
+    <meta charset="utf-8">
+    <title>RegM</title>
+    <link rel="stylesheet" type="text/css" href="css/screen.css">
+</head>
+<body>
+
+<article>
+
+    <h1>Register Machine</h1>
+
+    <div class="input">
+        <h2>Program</h2>
+
+        <div>
+            <textarea id="code"></textarea>
         </div>
-        <div class="input">
-            <h2>Program</h2>
-            <div>
-                <textarea id="code" cols="40" rows="15"></textarea>
-            </div>
-            <h2>Input</h2>
-            <div>
-                <input id="memory" type="text" value="1 2" />
-                <span style="color: #999;">[B, c0, c1, c2, ...]</span>
-            </div>
-            <div style="margin-top: 20px;"><input id="run" type="button" value="Run!" /></div>
-        </div>
-        <div class="output">
-            <h2>Output</h2>
+        <h2>Input</h2>
+
+        <div id="memory">
+
+            <p><span>B</span><span>c0</span><span>c1</span><span>c2</span><span>…</span></p>
+            <br>
+            <input type="text" value="1 2"/>
+
+
             <table>
-                <thead>
-                    <tr>
-                        <th>Step</th>
-                        <th>Line</th>
-                        <th>Instruction</th>
-                        <th>Memory</th>
-                    </tr>
-                </thead>
-                <tbody id="output">
-                </tbody>
+                <tr>
+                    <td>B</td>
+                    <td>c0</td>
+                    <td>c1</td>
+                </tr>
+                <tr>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                </tr>
             </table>
         </div>
-    </body>
+
+        <button id="run" type="submit">Run!</button>
+
+    </div><div class="output">
+        <h2>Output</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Line</th>
+                    <th>Instruction</th>
+                    <th>Memory</th>
+                </tr>
+            </thead>
+            <tbody id="output"></tbody>
+        </table>
+    </div>
+
+</article>
+
+
+<script src="js/jquery.js" charset="utf-8"></script>
+<script src="js/regm.js" charset="utf-8"></script>
+<script src="js/index.js" charset="utf-8"></script>
+
+</body>
 </html>

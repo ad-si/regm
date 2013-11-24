@@ -1,0 +1,109 @@
+* {
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+html {
+  height: 100%;
+}
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  background-color: #7c9360;
+  height: 100%;
+}
+article {
+  width: 860px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #dcdcdc;
+  min-height: 100%;
+}
+button {
+  padding: 1em;
+}
+h1 {
+  font-size: 2em;
+  font-family: "Courier New";
+  margin-bottom: 1em;
+  color: #000;
+}
+h2 {
+  color: #000;
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+.input {
+  vertical-align: top;
+  display: inline-block;
+  width: 360px;
+}
+.output {
+  vertical-align: top;
+  display: inline-block;
+  width: 440px;
+  display: none;
+}
+.output table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+.output table tbody {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+.output table tbody tr:nth-of-type(2n+1) {
+  background-color: #ebebeb;
+}
+.output table th,
+.output table td {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.output table td.error {
+  background-color: #f7d5d8;
+  color: #770f00;
+}
+textarea {
+  width: 300px;
+  height: 300px;
+  font-family: "Courier New";
+  padding: 1em;
+  background-color: #323232;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: grayscale;
+  font-weight: 700;
+  margin-bottom: 3em;
+}
+#memory {
+  margin-bottom: 2em;
+}
+#memory input,
+#memory p {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0.3em 0.8em;
+}
+#memory input {
+  padding: 0.3em 1.2em;
+}
+#memory span {
+  display: inline-block;
+  width: 2em;
+  border-width: 0 1px 0 0;
+  border-collapse: collapse;
+  border-color: gray;
+  border-style: solid;
+  padding: 0 0.4em;
+}
+#memory span:first-of-type {
+  border-width: 0 1px 0 1px;
+}
+#memory table {
+  display: none;
+}
