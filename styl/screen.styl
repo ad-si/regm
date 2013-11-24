@@ -26,8 +26,10 @@ article
 	min-height: 100%
 
 button
-	padding: 1em
+	padding: 0.3em 0.8em
 
+input
+	margin-bottom: 0.5em
 
 h1
 	font-size: 2em
@@ -40,6 +42,9 @@ h2
 	font-size: 1.3em
 	margin-bottom: 0.5em
 
+p
+	margin-bottom: 0.3em
+
 
 .input
 	vertical-align: top
@@ -51,22 +56,23 @@ h2
 	display: inline-block
 	width: 440px
 	display: none
-	table
-		border-collapse: collapse
-		margin-bottom: 20px
-		background-color: gray(240)
-		tbody
-			font-family: 'Courier New', monospace
-			font-size: 11px
-			font-weight: 700
-			tr:nth-of-type(2n+1)
-				background-color: gray(235)
-		th,td
-			border: 1px solid #ccc
-			padding: 5px
-		td.error
-			background-color: #f7d5d8
-			color: #770f00
+
+table
+	border-collapse: collapse
+	margin-bottom: 20px
+	background-color: gray(240)
+	tbody
+		font-family: 'Courier New', monospace
+		font-size: 11px
+		font-weight: 700
+		tr:nth-of-type(2n+1)
+			background-color: gray(235)
+	th,td
+		border: 1px solid gray(200)
+		padding: 5px
+	td.error
+		background-color: rgb(247, 213, 216)
+		color: rgb(119,15,0)
 
 textarea
 	width: 300px
@@ -98,5 +104,3 @@ textarea
 		padding: 0 0.4em
 		&:first-of-type
 			border-width: 0 1px 0 1px
-	table
-		display: none

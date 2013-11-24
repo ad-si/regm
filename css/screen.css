@@ -22,7 +22,10 @@ article {
   min-height: 100%;
 }
 button {
-  padding: 1em;
+  padding: 0.3em 0.8em;
+}
+input {
+  margin-bottom: 0.5em;
 }
 h1 {
   font-size: 2em;
@@ -35,6 +38,9 @@ h2 {
   font-size: 1.3em;
   margin-bottom: 0.5em;
 }
+p {
+  margin-bottom: 0.3em;
+}
 .input {
   vertical-align: top;
   display: inline-block;
@@ -46,25 +52,25 @@ h2 {
   width: 440px;
   display: none;
 }
-.output table {
+table {
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-.output table tbody {
+table tbody {
   font-family: 'Courier New', monospace;
   font-size: 11px;
   font-weight: 700;
 }
-.output table tbody tr:nth-of-type(2n+1) {
+table tbody tr:nth-of-type(2n+1) {
   background-color: #ebebeb;
 }
-.output table th,
-.output table td {
-  border: 1px solid #ccc;
+table th,
+table td {
+  border: 1px solid #c8c8c8;
   padding: 5px;
 }
-.output table td.error {
+table td.error {
   background-color: #f7d5d8;
   color: #770f00;
 }
@@ -103,7 +109,4 @@ textarea {
 }
 #memory span:first-of-type {
   border-width: 0 1px 0 1px;
-}
-#memory table {
-  display: none;
 }

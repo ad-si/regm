@@ -21,40 +21,70 @@
 
         <div id="memory">
 
-            <p><span>B</span><span>c0</span><span>c1</span><span>c2</span><span>…</span></p>
-            <br>
-            <input type="text" value="1 2"/>
-
-
             <table>
                 <tr>
                     <td>B</td>
                     <td>c0</td>
                     <td>c1</td>
+                    <td>c2</td>
+                    <td>c3</td>
+                    <td>…</td>
                 </tr>
+                <!--
                 <tr>
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>
                 </tr>
+                -->
+            </table>
+
+            <input type="text" value="0"/>
+
+
+
+            <br>
+
+            <button id="run" type="submit">Run!</button>
+        </div>
+
+        <div id="function">
+            <label for="iterator">Iterator:</label>
+            <input type="text" id="iterator" value="c1"/>
+
+            <table>
+                <thead>
+                <tr>
+                    <td>input</td>
+                    <td>output</td>
+                    <td>f(c1)</td>
+                </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
 
-        <button id="run" type="submit">Run!</button>
-
     </div><div class="output">
-        <h2>Output</h2>
+        <h2>Steps</h2>
         <table>
             <thead>
-                <tr>
-                    <th>Step</th>
-                    <th>Line</th>
-                    <th>Instruction</th>
-                    <th>Memory</th>
-                </tr>
+            <tr>
+                <th>Step</th>
+                <th>Line</th>
+                <th>Instruction</th>
+                <th>Memory</th>
+            </tr>
             </thead>
             <tbody id="output"></tbody>
         </table>
+
+        <section id=sequence>
+            <h2>Sequence of f(c1)</h2>
+
+            <p></p>
+            <a target="blank">Search for this sequence on oeis.org</a>
+        </section>
+
     </div>
 
 </article>

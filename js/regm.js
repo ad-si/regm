@@ -4,6 +4,7 @@
 		b = [],
 		c = [], // [B, c0, c1, ...]
 		running = true,
+		funcParam = 0,
 		instructions = {
 			load: function (i) {
 				c[1] = getC(i)
@@ -41,30 +42,23 @@
 			goto: function (i) {
 				c[0] = parseInt(i)
 			},
-			if: function (c, op, val, goto, i) {
-				var jump = false
-				if ((op == '=' || op == '==') && c[1] == parseInt(val)) {
-					jump = true
-				}
-				else if ((op == '!=' || op == '<>') && c[1] != parseInt(val)) {
-					jump = true
-				}
-				else if (op == '>' && c[1] > parseInt(val)) {
-					jump = true
-				}
-				else if (op == '>=' && c[1] >= parseInt(val)) {
-					jump = true
-				}
-				else if (op == '<' && c[1] < parseInt(val)) {
-					jump = true
-				}
-				else if (op == '<=' && c[1] <= parseInt(val)) {
-					jump = true
-				}
+			if: function (irrelevant, op, val, goto, i) {
 
-				if (jump) {
+				var jump = false
+
+				val = parseInt(val)
+
+				if (((op == '=' || op == '==') && c[1] == val) ||
+					((op == '!=' || op == '<>') && c[1] != val) ||
+					(op == '>' && c[1] > val) ||
+					(op == '>=' && c[1] >= val) ||
+					(op == '<' && c[1] < val) ||
+					(op == '<=' && c[1] <= val))
+
+					jump = true
+
+				if (jump)
 					instructions.goto(i)
-				}
 			},
 			end: function () {
 				c[0]--
@@ -84,83 +78,89 @@
 
 		if (c[0] > b.length) {
 			running = false
-			log({
+			logger({
 				type: 'error',
 				message: 'Invalid program counter!'
 			})
 			return
 		}
 
-
 		var line = c[0]
 		var instruction = b[line - 1]
 		var parts = instruction.split(' ')
 		var name = parts[0].toLowerCase()
+		var	i
 
 		if (instructions[name]) {
 			c[0]++
-			instructions[name].apply( parts.slice(1))
+			instructions[name].apply(null, parts.slice(1))
 
-			for (var i = 0; i < c.length; i++) {
+			for (i = 0; i < c.length; i++) {
 				if (c[i] < 0) {
 					c[i] = 0
 				}
 			}
 
 			stepCount++
-			log({
+
+			logger({
 				type: 'step',
 				step: stepCount,
 				line: line,
 				instruction: instruction,
 				c: c
 			})
-		} else {
+		}
+		else {
 			running = false
-			log({
+			logger({
 				type: 'error',
 				message: 'Invalid instruction: ' + instruction
 			})
 		}
 	}
 
-	function log(object) {
+	function logger(object) {
 		console.log(JSON.stringify(object))
 	}
 
 	window.RegM = {}
 
-	RegM.run = function(code, memory, callback) {
+	RegM.run = function (code, memory, callback) {
 
 		var i
 
-		if (callback) log = callback
+		// Clone Array
+		c = memory.slice(0)
+
+		c.length = c.length <= 8 ? 8 : c.length + 1
+		c[0] = 1
+
+
+		for (i = 0; i < c.length; i++)
+			c[i] = parseInt(c[i]) | 0
+
+		//console.log(mem)
+
+		if (callback)
+			logger = callback
+
+		else if (callback === false)
+			logger = function(){}
 
 		stepCount = 0
 		b = code.match(/[^\r\n]+/g)
 		running = true
 
 		if (!b) {
-			log({
+			logger({
 				type: 'error',
 				message: 'No program given!'
 			})
 			return
 		}
 
-
-		c = memory.split(/[\s,;]+/)
-
-		c.length = c.length < 16 ? 16 : c.length + 1
-		c[0] = 1
-
-		for (i = 0; i < c.length; i++)
-			c[i] = parseInt(c[i]) | 0
-
-		if (c[0] == 0) c[0] = 1
-
-
-		log({
+		logger({
 			type: 'step',
 			step: stepCount,
 			line: '',
@@ -173,11 +173,13 @@
 
 			if (stepCount >= 1000) {
 				running = false
-				log({
+				logger({
 					type: 'error',
 					message: 'Limit of 1000 steps reached!'
 				})
 			}
 		}
+
+		return c.slice(0)
 	}
 }()
