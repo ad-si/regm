@@ -2,6 +2,8 @@
 
 An online register machine implemented in JavaScript.
 
+![Screenshot](screenshot.png)
+
 
 # Disclaimer
 
