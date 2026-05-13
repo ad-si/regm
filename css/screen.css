@@ -25,6 +25,7 @@ button {
   padding: 0.3em 0.8em;
 }
 input {
+  padding: 0.3em 0.8em;
   margin-bottom: 0.5em;
 }
 h1 {
@@ -94,9 +95,6 @@ textarea {
   display: inline-block;
   background-color: #fff;
   padding: 0.3em 0.8em;
-}
-#memory input {
-  padding: 0.3em 1.2em;
 }
 #memory span {
   display: inline-block;
